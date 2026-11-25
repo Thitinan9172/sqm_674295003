@@ -10,7 +10,7 @@ from reportlab.platypus import (SimpleDocTemplate, Paragraph, Spacer, Table, Tab
                                 PageBreak, KeepTogether)
 
 ROOT = Path(__file__).resolve().parent.parent
-OUTPUT = ROOT / "output" / "pdf" / "Lab01_674295003_ชื่อ-สกุล.pdf"
+OUTPUT = ROOT / "output" / "pdf" / "Lab01_674295003_ฐิตินันท์-คงไสยะ.pdf"
 FONT = r"C:\Windows\Fonts\LeelawUI.ttf"
 pdfmetrics.registerFont(TTFont("Leelawadee", FONT))
 
@@ -59,7 +59,7 @@ story = [
     Spacer(1, 1.0 * cm),
     p("รายวิชา 4663335 การจัดการคุณภาพซอฟต์แวร์"),
     p("รหัสนักศึกษา: 674295003"),
-    p("ชื่อ-สกุล: [กรอกชื่อ-สกุล]"),
+    p("ชื่อ-สกุล: ฐิตินันท์ คงไสยะ"),
     p("GitHub: https://github.com/Thitinan9172/sqm_674295003"),
     PageBreak(),
     heading("1. สรุปเหตุการณ์และผลกระทบ"),
