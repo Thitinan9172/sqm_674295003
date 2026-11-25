@@ -7,7 +7,7 @@ from reportlab.lib.units import cm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle,
-                                PageBreak, KeepTogether)
+                                PageBreak, Image as RLImage)
 
 ROOT = Path(__file__).resolve().parent
 OUTPUT = ROOT / "Lab01_674295003_ฐิตินันท์-คงไสยะ.pdf"
@@ -42,6 +42,14 @@ def table(rows, widths):
         ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
     ]))
     return t
+
+def evidence_image(filename, width):
+    path = ROOT / "evidence" / filename
+    image = RLImage(str(path))
+    ratio = image.imageHeight / image.imageWidth
+    image.drawWidth = width
+    image.drawHeight = width * ratio
+    return image
 
 def footer(canvas, doc):
     canvas.saveState()
@@ -91,7 +99,13 @@ story = [
     p("1. ทำ deployment แบบอัตโนมัติและยืนยัน hash/เวอร์ชันของซอฟต์แวร์ทุกเครื่องก่อนเปิดใช้<br/>2. ใช้ code review และ change approval สำหรับการเปลี่ยนแปลงที่มีความเสี่ยงสูง<br/>3. ลบหรือปิดกั้นโค้ดที่เลิกใช้แล้ว พร้อมบันทึกรายการโค้ดและ feature flag ที่เหลืออยู่<br/>4. ทดสอบแบบ integration และ regression บนสภาพแวดล้อมที่เหมือนระบบจริง รวมถึงกรณี rollback<br/>5. กำหนด trading limit, circuit breaker, dashboard และ kill switch ที่เจ้าหน้าที่ใช้งานได้ทันที"),
     heading("6. หลักฐาน GitHub และ Git"),
     p("Repository: sqm_674295003<br/>URL: https://github.com/Thitinan9172/sqm_674295003"),
-    p("ก่อนส่ง ให้แนบภาพหน้าจอ: (1) หน้า repository ที่เห็นชื่อ repository และโฟลเดอร์ lab01 (2) Terminal ที่แสดง git --version และ (3) หน้าประวัติ commit รายงาน Lab 1"),
+    p("ภาพที่ 1 ผลการตรวจสอบเวอร์ชัน Git"),
+    evidence_image("git-version.png", 13.6 * cm),
+    Spacer(1, 0.3 * cm),
+    p("ภาพที่ 2 GitHub repository sqm_674295003 และไฟล์ในโฟลเดอร์ lab01/"),
+    evidence_image("github-repository.png", 16.4 * cm),
+    Spacer(1, 0.3 * cm),
+    p("ก่อนส่ง ให้เพิ่มภาพหน้าประวัติ commit ที่แสดงการ commit รายงาน Lab 1 โดยเปิด https://github.com/Thitinan9172/sqm_674295003/commits/main"),
     heading("7. การใช้ AI"),
     p("ใช้ Codex ช่วยค้นหาแหล่งอ้างอิงทางการ วางโครงร่าง และตรวจความชัดเจนของภาษา ผู้จัดทำตรวจสอบข้อเท็จจริงกับเอกสารของ SEC และเรียบเรียงเนื้อหารายงานนี้เอง โดยต้องแนบภาพหรือสำเนาบทสนทนานี้ในภาคผนวกก่อนส่งตามนโยบายรายวิชา"),
     heading("อ้างอิง"),
