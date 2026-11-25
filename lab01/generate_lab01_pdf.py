@@ -9,8 +9,8 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle,
                                 PageBreak, KeepTogether)
 
-ROOT = Path(__file__).resolve().parent.parent
-OUTPUT = ROOT / "output" / "pdf" / "Lab01_674295003_ฐิตินันท์-คงไสยะ.pdf"
+ROOT = Path(__file__).resolve().parent
+OUTPUT = ROOT / "Lab01_674295003_ฐิตินันท์-คงไสยะ.pdf"
 FONT = r"C:\Windows\Fonts\LeelawUI.ttf"
 pdfmetrics.registerFont(TTFont("Leelawadee", FONT))
 
